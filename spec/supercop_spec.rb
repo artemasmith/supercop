@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe QualitativeCode do
+describe Supercop do
   it "has a version number" do
-    expect(QualitativeCode::VERSION).not_to be nil
+    expect(Supercop::VERSION).not_to be nil
   end
 
   it "does something useful" do

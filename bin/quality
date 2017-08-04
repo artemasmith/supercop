@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'qualitative_code'
+require 'supercop'
+
+Supercop::Checker.new.handle_cops

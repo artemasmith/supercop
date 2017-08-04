@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'qualitative_code/version'
+require 'supercop/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "qualitative_code"
-  spec.version       = QualitativeCode::VERSION
+  spec.name          = "supercop"
+  spec.version       = Supercop::VERSION
   spec.authors       = ["Artem Kuznetsov"]
   spec.email         = ["artem.kuznetsov@activeplatform.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{ Utility for code estimation}
+  spec.description   = %q{Utility for code estimation}
+  spec.homepage      = "http://github.com"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
