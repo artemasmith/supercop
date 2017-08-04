@@ -1,6 +1,7 @@
 require 'supercop/version'
 require 'supercop/configuration'
 require 'supercop/checker'
+require 'generators/cops_config_generator'
 require 'my_gem/railtie' if defined?(Rails)
 
 module QualitativeCode
