@@ -6,34 +6,33 @@ module Supercop
       require 'fileutils'
 
       def initialize(args)
-        @filename = args.fetch(:filename)
+        @filename = args.fetch(:filename, 'supercop.yml')
         @destination = args.fetch(:destination)
         @options = args.fetch(:options, force: false)
+        @source = args.fetch(:source, 'supercop.yml.temp')
+        @project = args.fetch(:project, Project)
       end
 
       def perform
-        puts 'Please provide filename and destination' && return if invalid_attributes?
-        puts "There is no destination #{destination}" && return if invalid_destination?
+        return "There is no destination #{destination}" if invalid_destination?
 
-        FileUtils.copy(template_file, destination_file)
+        FileUtils.copy(source_file, destination_file)
 
-        puts "file #{filename} created"
+        "file #{destination_file} created"
+      rescue => e
+        "Could not create file. #{e.message}"
       end
 
       private
 
-      attr_reader :filename, :destination
+      attr_reader :filename, :destination, :source, :project
 
       def invalid_destination?
-        !Dir.exists?(destination)
+        destination.empty? || !Dir.exist?(destination)
       end
 
-      def invalid_attributes?
-        filename.blank? || destination.blank?
-      end
-
-      def template_file
-        Project.config_files(filename)
+      def source_file
+        project.config_files(source)
       end
 
       def destination_file
