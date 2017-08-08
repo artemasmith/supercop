@@ -16,16 +16,16 @@ module Supercop
       def perform
         return "There is no destination #{destination}" if invalid_destination?
 
-        FileUtils.copy(source_file, destination_file)
+        FileUtils.copy(source_file, destination_file, options)
 
-        "file #{destination_file} created"
+        "file #{destination_file} was created"
       rescue => e
         "Could not create file. #{e.message}"
       end
 
       private
 
-      attr_reader :filename, :destination, :source, :project
+      attr_reader :filename, :destination, :source, :project, :options
 
       def invalid_destination?
         destination.empty? || !Dir.exist?(destination)

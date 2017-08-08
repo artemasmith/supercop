@@ -20,11 +20,10 @@ describe Supercop::Actions::CreateFile do
   end
 
   describe 'when invalid args' do
-    let(:invalid_attributes) { 'Please provide filename and destination' }
-    let(:destination) { '/no_folder' }
     let(:invalid_destination) { "There is no destination #{destination}" }
+    let(:invalid_params) { { destination: destination } }
+    let(:destination) { '/no_folder' }
     let(:empty_params) { {} }
-    let(:invalid_params) { { destination: 'sdfdsf' } }
 
     it { expect { described_class.new(empty_params).perform }.to raise_error(/key not found/) }
     it 'fileutils troubles' do
@@ -34,6 +33,6 @@ describe Supercop::Actions::CreateFile do
       expect(creator.perform).to include('Could not')
     end
 
-    it { expect(described_class.new(invalid_params).perform).to include('There is no destination ') }
+    it { expect(described_class.new(invalid_params).perform).to eq(invalid_destination) }
   end
 end
