@@ -1,7 +1,9 @@
 require 'supercop/version'
 require 'supercop/configuration'
 require 'supercop/checker'
-require 'my_gem/railtie' if defined?(Rails)
+require 'supercop/actions/create_file'
+require 'supercop/actions/empty_folder'
+require 'supercop/railtie' if defined?(Rails)
 
 module QualitativeCode
   class << self

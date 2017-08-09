@@ -1,7 +1,12 @@
 module Supercop
+  # FYI: Here we defined rake tasks and generators for Rails use
   class Railtie < Rails::Railtie
-    initializer 'cops_config_initialization' do
+    rake_tasks do
+      load 'tasks/config_generator.rake'
+    end
 
+    generators do
+      require_relative 'generators/config_generator'
     end
   end
 end
