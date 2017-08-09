@@ -1,6 +1,6 @@
 require 'pry'
-require_relative '../spec_helper'
-require_relative '../../lib/supercop/actions/empty_folder'
+require_relative '../../spec_helper'
+require_relative '../../../lib/supercop/actions/empty_folder'
 
 describe Supercop::Actions::EmptyFolder do
   include FakeFS::SpecHelpers

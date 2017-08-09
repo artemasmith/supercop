@@ -8,8 +8,8 @@ module Supercop
       def initialize(args)
         @filename = args.fetch(:filename, 'supercop.yml')
         @destination = args.fetch(:destination)
-        @options = args.fetch(:options, force: false)
-        @source = args.fetch(:source, 'supercop.yml.temp')
+        @options = args.fetch(:options, {})
+        @source = args.fetch(:source, 'supercop.yml')
         @project = args.fetch(:project, Project)
       end
 
