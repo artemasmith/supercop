@@ -1,17 +1,39 @@
+# FYI: path, git and version are optional params for installation
+# Please note, that you should specify JSON output param for correct parsing
+#
+# Example:
+#
+# rubocop:
+#   options: '--jormat default'
+#   path: '/home/developer/rubocopgem/'
+#   version: '1.0.1'
+#
+# With git option:
+#
+# rubocop:
+#   options: '--jormat default'
+#   git: 'git@github.com/developer/rubocop.git'
+#   version: '1.0.1'
+#
+# Please note, that 'path' options overrides 'git' option!
+
 max: &max_quantity
   max: 99
-verbocity: false
+verbose: false
 config:
-  - linter: :rubocop
+  rubocop:
     options: '--format json'
+    git: 'git@github.com:bbatsov/rubocop.git'
+    version: '~0.49'
     <<: *max_quantity
-  - linter: :reek
+  reek:
     options: '--format json'
+    version: '~> 4.7.2'
     <<: *max_quantity
-  - linter: 'slim-lint'
+  slim-lint:
     options: 'app/views --reporter json'
+    version: '~> 0.13.0'
     <<: *max_quantity
-  - linter: 'scss-lint'
+  scss-lint:
     options: 'app/assets --format JSON'
     <<: *max_quantity
-

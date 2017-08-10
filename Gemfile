@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in qualitative_code.gemspec
+# Specify your gem's dependencies in supercop.gemspec
 gemspec
