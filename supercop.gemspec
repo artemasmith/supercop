@@ -44,5 +44,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'slim_lint'
   spec.add_runtime_dependency 'coffeelint'
   spec.add_runtime_dependency 'json'
-  spec.add_runtime_dependency 'rake'
 end

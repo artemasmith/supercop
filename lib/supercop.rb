@@ -7,9 +7,14 @@ require 'supercop/configuration'
 require 'supercop/checker'
 require 'supercop/actions/create_file'
 require 'supercop/actions/empty_folder'
-require 'supercop/actions/dependency_load'
+require 'supercop/actions/file_injector'
+require 'supercop/actions/loaders/base'
+require 'supercop/actions/loaders/dependency'
 
-require 'supercop/railtie' if defined?(Rails)
+if defined?(Rails)
+  require 'supercop/railtie'
+  require 'rails/generators'
+end
 
 module Supercop
   class << self

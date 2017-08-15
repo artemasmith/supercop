@@ -8,6 +8,10 @@ module Supercop
       @file_path = config_path
     end
 
+    def path(file_path)
+      defined?(Rails) ?  Rails.root.join(file_path) : File.join(Dir.pwd, file_path)
+    end
+
     private
 
     def config_file
