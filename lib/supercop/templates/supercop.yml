@@ -30,10 +30,10 @@ config:
     options: '--format json'
     version: '~> 4.7.2'
     <<: *max_quantity
-  slim-lint:
+  slim_lint:
     options: 'app/views --reporter json'
     version: '~> 0.13.0'
     <<: *max_quantity
-  scss-lint:
+  scss_lint:
     options: 'app/assets --format JSON'
     <<: *max_quantity

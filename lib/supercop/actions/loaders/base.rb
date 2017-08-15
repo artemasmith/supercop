@@ -2,6 +2,7 @@ module Supercop
   module Actions
     module Loaders
       class Base
+        BUNDLE_REQUIRED = :bundle_required
         attr_reader :gem_name, :config
 
         def initialize(gem_name)
@@ -10,21 +11,27 @@ module Supercop
         end
 
         def perform
-          require gem_name
+          load_gem
         rescue LoadError
           add_gem
 
-          puts "#{gem_name} wass added as dependency.\n"
+          puts "'#{gem_name}' was added as dependency.\n"
+          BUNDLE_REQUIRED
         end
 
         private
+
+        def load_gem
+          require gem_name
+        end
 
         def add_gem
           file = Supercop.configuration.path('Gemfile')
           if defined?(Rails)
             inject_into_file(file, gem_config)
           else
-            Supercop::Actions::FileInjector.new(filename: file, strings: gem_config).perform
+            Supercop::Actions::FileInjector.new(filename: file,
+                                                line: gem_config).perform
           end
         end
 

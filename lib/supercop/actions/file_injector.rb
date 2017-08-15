@@ -1,30 +1,33 @@
 module Supercop
   module Actions
     class FileInjector
-      attr_reader :filename
-      attr_accessor :strings
+      attr_reader :filename, :line
 
-      def initialize(filename:, strings:)
+      def initialize(filename:, line:)
         @filename = filename
-        @strings = strings
+        @line = line
       end
 
       def perform
-        puts "STRINGS\n #{strings}"
-        # strings.delete_if { |string| file_include?(string) }
+        return if file_include?
 
         insert_into_file
       end
 
       private
 
-      def file_include?(string)
-        File.foreach(filename).grep(/#{string}/)
+      def file_include?
+        File.foreach(filename).grep(/#{sanitized}/).present?
       end
 
       def insert_into_file
-        puts "strings \n#{strings}\n"
-        File.open(filename, 'a').write(strings)
+        File.open(filename, 'a') do |f|
+          f.write(line)
+        end
+      end
+
+      def sanitized
+        line.sub(/\s\n$/, '')
       end
     end
   end
