@@ -1,6 +1,6 @@
 require 'supercop'
 
-desc 'Create config file in your project'
+desc 'Create config file in your project, and load dependecies'
 namespace :supercop do
   task :generate_config do
     if defined?(Rails)
@@ -20,5 +20,11 @@ namespace :supercop do
     destination = File.expand_path('../../', __dir__)
 
     puts Supercop::Actions::CreateFile.new(destination: destination).perform
+
+    loader.load_dependencies
+  end
+
+  def loader
+    Supercop::Actions::Loaders::Dependency.new
   end
 end

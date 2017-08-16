@@ -11,8 +11,12 @@ module Supercop
         end
 
         def perform
+          puts 'Loading dependecies, please wait..'
+
           new_gems_added? ? install : say_nothing_needed
         end
+
+        alias load_dependencies perform
 
         private
 

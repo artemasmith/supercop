@@ -1,5 +1,12 @@
 # FYI: path, git and version are optional params for installation
 # Please note, that you should specify JSON output param for correct parsing
+# 'path' option is more priority and override 'git' option
+# 
+# Options:
+#   max: - max count of errors
+#   version: - version of gem to install
+#   path: - path to the gem in the file system
+#   git: - path to the gem's repo
 #
 # Example:
 #
@@ -7,6 +14,7 @@
 #   options: '--jormat default'
 #   path: '/home/developer/rubocopgem/'
 #   version: '1.0.1'
+#   max: 20
 #
 # With git option:
 #
@@ -16,6 +24,19 @@
 #   version: '1.0.1'
 #
 # Please note, that 'path' options overrides 'git' option!
+# Important!
+#
+# Please use gem names for the configuration keys, like you add it to your gemfile
+# For example:
+# Correct:
+#
+# sccs_lint:
+#   version: 0.69
+#
+# Incorrect - it wouldn't work
+#
+# scss-lint:
+#   version: 0.69
 
 max: &max_quantity
   max: 99
