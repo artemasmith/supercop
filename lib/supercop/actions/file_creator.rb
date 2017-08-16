@@ -2,7 +2,7 @@ require_relative '../project'
 
 module Supercop
   module Actions
-    class CreateFile
+    class FileCreator
       require 'fileutils'
 
       def initialize(args)

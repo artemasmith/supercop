@@ -9,6 +9,10 @@ module Supercop
         puts '=> Copy config file to config/supercop.yml'
         copy_file 'supercop.yml', 'config/supercop.yml'
       end
+
+      def load_dependencies
+        Supercop::Actions::Loaders::Dependency.new.perform
+      end
     end
   end
 end
