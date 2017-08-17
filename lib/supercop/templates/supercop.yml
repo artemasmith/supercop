@@ -1,6 +1,9 @@
-# FYI: path, git and version are optional params for installation
+# FYI: 'cmd', 'options' and 'max' are required.
+# 'path', 'git', 'version' and 'path' are optional params for installation.
+# 'version' would not work with 'path' param.
+# 'path' option is more priority and override 'git' param.
+#
 # Please note, that you should specify JSON output param for correct parsing
-# 'path' option is more priority and override 'git' option
 # 
 # Options:
 #   max: - max count of errors
@@ -16,14 +19,14 @@
 #   version: '1.0.1'
 #   max: 20
 #
-# With git option:
+# With git param:
 #
 # rubocop:
 #   options: '--jormat default'
 #   git: 'git@github.com/developer/rubocop.git'
 #   version: '1.0.1'
 #
-# Please note, that 'path' options overrides 'git' option!
+# Please note, that 'path' options overrides 'git' param!
 # Important!
 #
 # Please use gem names for the configuration keys, like you add it to your gemfile
@@ -31,30 +34,42 @@
 # Correct:
 #
 # sccs_lint:
-#   version: 0.69
+#   cmd: 'scss-lint'
+#   version: '0.69'
 #
 # Incorrect - it wouldn't work
 #
 # scss-lint:
-#   version: 0.69
+#   cmd: 'scss-lint'
+#   version: '0.69'
+# 
+# Template config fo rails project with slim
+# max: &max_quantity
+#   max: 99
+# verbose: false
+# config:
+#   rubocop:
+#     cmd: 'rubocop'
+#     options: '--format json'
+#     git: 'git@github.com:bbatsov/rubocop.git'
+#     version: '~0.49'
+#     <<: *max_quantity
+#   slim_lint:
+#     cmd: 'slim-lint'
+#     options: 'app/views --reporter json'
+#     version: '~> 0.13.0'
+#     <<: *max_quantity
+#   scss_lint:
+#     cmd: 'scss-lint'
+#     options: 'app/assets --format JSON'
+#     <<: *max_quantity
 
 max: &max_quantity
   max: 99
 verbose: false
 config:
   rubocop:
+    cmd: 'rubocop'
     options: '--format json'
     git: 'git@github.com:bbatsov/rubocop.git'
-    version: '~0.49'
-    <<: *max_quantity
-  reek:
-    options: '--format json'
-    version: '~> 4.7.2'
-    <<: *max_quantity
-  slim_lint:
-    options: 'app/views --reporter json'
-    version: '~> 0.13.0'
-    <<: *max_quantity
-  scss_lint:
-    options: 'app/assets --format JSON'
     <<: *max_quantity

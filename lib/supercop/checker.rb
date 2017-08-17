@@ -1,9 +1,10 @@
 module Supercop
   class Checker
-    attr_reader :linters, :printer, :config
+    attr_reader :linters, :printer, :config, :parser
 
     def initialize(printer = TableFormatter)
       @linters = Supercop.configuration.cops_settings.keys
+      @parser = Supercop::Parsers::Base
       @config = Supercop.configuration
       @printer = printer
     end
@@ -28,21 +29,14 @@ module Supercop
     end
 
     def actual_warnings_count(cop, linter)
-      output = `#{linter} #{cop.fetch('options')}`
+      output = `#{cop.fetch('cmd')} #{cop.fetch('options')}`
 
-      # FYI: I didnt' find workaround: it doesn't work without variable
-      count = JSON.parse(output)['summary']['offense_count']
-    rescue => e
-      if config.verbose
-        puts %Q(Wrong configuration for linter, please check the path provided.
-              Options: '#{cop.fetch('options')}'. Error: #{e.message})
-      end
-
-      'none'
+      Parsers::Proxy.new(output, linter).parse.to_s
     end
 
     def parse_cop_config(linter)
       return if linter.blank?
+
       cop = config.public_send(linter)
 
       { warnings_actual: actual_warnings_count(cop, linter),
@@ -51,7 +45,7 @@ module Supercop
     rescue => e
       puts "Problems with linter config load. #{e.message}" if config.verbose
 
-      { warnings_actual: :none, warnings_max: :none, linter: linter }
+      { warnings_actual: 0, warnings_max: 0, linter: linter }
     end
   end
 end
