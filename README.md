@@ -1,6 +1,12 @@
 # WIP: Supercop
 
-One gem for rule the other linters.
+This gem allows you to combine multiple linters in one place and run them alltogether 
+with tabled report. You should specify which linters you would use, for example rubocop, reek,
+scss_linter etc. Gem would load them and run checks.
+
+One gem for rule them all:)
+
+I used ruby version 2.3.1, it don't think it would work for eralier versions of ruby.
 
 ## Installation
 
@@ -18,19 +24,29 @@ Or install it yourself as:
 
     $ gem install supercop
 
-## Usage
-
 ### Install into another gem
 
 Add `copy_config` task to the Rakefile:
+
 spec = Gem::Specification.find_by_name 'supercop'
 load "#{spec.gem_dir}/lib/tasks/config_generator.rake"
 
+## Usage
+
+After install, you should modify supercop.yml and specify prefered linters.
+After that run
+
+  $ rake supercop:generate_config
+
+for non-rails project (like gem) or
+
+  $rails g supercop:config
+
+for rails project
+
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+After checking out the repo, run bundle install and make your changes. After commit, create Pull Request and notify me.
 
 ## Contributing
 

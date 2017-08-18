@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'supercop'
-
-Supercop::Checker.new.handle_cops

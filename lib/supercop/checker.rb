@@ -1,30 +1,27 @@
-require_relative 'table_formatter'
-
 module Supercop
   class Checker
-    require 'json'
-    require 'yaml'
-
-    MAX = 99
-
-    attr_reader :cops_config, :linters
+    attr_reader :linters, :printer, :config, :parser
 
     def initialize(printer = TableFormatter)
-      @cops_config = Supercop.configuration.cops_settings
       @linters = Supercop.configuration.cops_settings.keys
+      @parser = Supercop::Parsers::Base
+      @config = Supercop.configuration
       @printer = printer
     end
 
-    def cops_everything
-      cops = linters.map { |linter| handle_cops(parse_cop_config(Supercop.configuration.public_send(linter), linter))}
+    def perform
+      cops = linters.map { |linter| handle_cops(parse_cop_config(linter)) }
 
-      @printer.new.print_table(cops)
+      printer.new.print_table(cops)
     end
 
     private
 
     def handle_cops(warnings_actual:, warnings_max:, linter:)
-      [linter, warnings_actual, warnings_max, linter_status(warnings_actual, warnings_max)]
+      [linter,
+       warnings_actual,
+       warnings_max,
+       linter_status(warnings_actual, warnings_max)]
     end
 
     def linter_status(actual, max)
@@ -32,21 +29,23 @@ module Supercop
     end
 
     def actual_warnings_count(cop, linter)
-      output = `#{linter} #{cop.fetch('options')}`
+      output = `#{cop.fetch('cmd')} #{cop.fetch('options')}`
 
-      count = JSON.parse(output)['summary']['offense_count']
-    rescue => e
-      puts %Q(Wrong configuration for linter, please check the path provided.
-              Options: '#{cop.fetch('options')}'. Error: #{e.message}) if Supercop.configuration.verbose
-      'none'
+      Parsers::Proxy.new(output, linter).parse.to_s
     end
 
-    def parse_cop_config(cop, linter)
+    def parse_cop_config(linter)
       return if linter.blank?
+
+      cop = config.public_send(linter)
 
       { warnings_actual: actual_warnings_count(cop, linter),
         warnings_max: cop.fetch('max'),
         linter: linter }
+    rescue => e
+      puts "Problems with linter config load. #{e.message}" if config.verbose
+
+      { warnings_actual: 0, warnings_max: 0, linter: linter }
     end
   end
 end

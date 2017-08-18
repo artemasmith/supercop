@@ -4,6 +4,7 @@ module Supercop
   class Railtie < ::Rails::Railtie
     rake_tasks do
       load 'tasks/config_generator.rake'
+      load 'tasks/check.rake'
     end
 
     generators do

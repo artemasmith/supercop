@@ -1,5 +1,3 @@
-require_relative '../project'
-
 module Supercop
   module Actions
     class FileCreator
