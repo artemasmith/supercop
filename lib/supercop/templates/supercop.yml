@@ -3,6 +3,14 @@
 # 'version' would not work with 'path' param.
 # 'path' option is more priority and override 'git' param.
 #
+# linter: - gem name of linter to download
+#   cmd: - command that run in command line
+#   option: - options for cmd command to run. Please spcify here json output for normal parsing
+#   version: - version of gem to install
+#   git: - repo for gem download
+#   path: - local file system path to gem. It overrides git option
+#   max: - maximum errors for linter to define ok or fail status of check
+#
 # Please note, that you should specify JSON output param for correct parsing
 # 
 # Options:

@@ -1,8 +1,9 @@
 # WIP: Supercop
 
-This gem allows you to combine multiple linters in one place and run them alltogether 
-with tabled report. You should specify which linters you would use, for example rubocop, reek,
-scss_linter etc. Gem would load them and run checks.
+This gem allows you to combine multiple linters in one command and run them alltogether
+with tabled-view report.
+You should specify which linters you would use, for example rubocop, reek,
+scss_linter etc. Gem would load them if they are not installed and run checks.
 
 One gem for rule them all:)
 
@@ -40,9 +41,24 @@ After that run
 
 for non-rails project (like gem) or
 
-  $rails g supercop:config
+  $ rails g supercop:config
 
 for rails project
+
+### Running check
+
+  $ rake supercop:check
+
+  +--------------------+--------------------+--------------------+--------------------+
+  |       linter       |       alerts       |        max         |       status       |
+  +--------------------+--------------------+--------------------+--------------------+
+  |      rubocop       |         48         |         99         |         ok         |
+  |        reek        |         45         |         99         |         ok         |
+  |     slim_lint      |        none        |         99         |         ok         |
+  |     scss_lint      |        none        |         99         |         ok         |
+  +--------------------+--------------------+--------------------+--------------------+
+
+  'none' - means linter dod not work correctly. To figured out why - change 'verbose' option to true
 
 ## Development
 
@@ -52,8 +68,6 @@ After checking out the repo, run bundle install and make your changes. After com
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/artemasmith/supercop.
 
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
