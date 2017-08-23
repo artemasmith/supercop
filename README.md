@@ -29,10 +29,13 @@ Or install it yourself as:
 
 ### Install into another gem
 
-Add `copy_config` task to the Rakefile:
+Add supercop tasks to the Rakefile:
 
-spec = Gem::Specification.find_by_name 'supercop'
-load "#{spec.gem_dir}/lib/tasks/config_generator.rake"
+```ruby
+  spec = Gem::Specification.find_by_name 'supercop'
+  load "#{spec.gem_dir}/lib/tasks/config_generator.rake"
+  load "#{spec.gem_dir}/lib/tasks/check.rake"
+```
 
 ## Usage
 

@@ -1,7 +1,7 @@
 require 'pry'
 require_relative '../../spec_helper'
 
-describe Supercop::Actions::FileCreator do
+describe Supercop::Actions::ConfigCopier do
   include FakeFS::SpecHelpers
 
   let(:params) { { filename: 'file', destination: './project' } }

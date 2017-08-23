@@ -22,9 +22,9 @@ namespace :supercop do
   def generate_for_other
     puts 'Generate config for your supercop linters'
 
-    destination = File.expand_path('../../', __dir__)
+    destination = Dir.pwd
 
-    puts Supercop::Actions::CreateFile.new(destination: destination).perform
+    puts Supercop::Actions::ConfigCopier.new(destination: destination).perform
   end
 
   def loader

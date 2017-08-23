@@ -6,12 +6,11 @@ module Supercop
       puts '=> Creates a Supercop idefault config for your application.'
 
       def copy_config_file
-        puts '=> Copy config file to config/supercop.yml'
-        copy_file 'supercop.yml', 'config/supercop.yml'
-      end
+        destination = 'config/supercop.yml'
 
-      def load_dependencies
-        Supercop::Actions::Loaders::Dependency.new.perform
+        puts "=> Copy config file to #{destination}"
+
+        copy_file 'supercop.yml', destination
       end
     end
   end
