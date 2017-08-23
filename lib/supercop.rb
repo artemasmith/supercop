@@ -2,6 +2,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/core_ext/hash/indifferent_access'
 
+require 'supercop/cop'
 require 'supercop/version'
 require 'supercop/checker'
 require 'supercop/configuration'

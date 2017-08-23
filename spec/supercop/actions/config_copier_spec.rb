@@ -1,5 +1,4 @@
-require 'pry'
-require_relative '../../spec_helper'
+require 'spec_helper'
 
 describe Supercop::Actions::ConfigCopier do
   include FakeFS::SpecHelpers
