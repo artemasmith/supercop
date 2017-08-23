@@ -21,7 +21,16 @@ module Supercop
         private
 
         def new_gems_added?
-          gem_list.any? { |gem_name| loader.new(gem_name).perform == BUNDLE_REQUIRED }
+          gem_list.any? { |gem_name| loaded?(gem_name) }
+        end
+
+        def loaded?(gem_name)
+          if loader.new(gem_name).perform == BUNDLE_REQUIRED
+            puts "Loading #{gem_name}"
+            true
+          else
+            false
+          end
         end
 
         def install
