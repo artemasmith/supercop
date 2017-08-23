@@ -3,8 +3,7 @@ module Supercop
     class Proxy
       RUBOCOP = %w[SlimLint HamlLint].freeze
 
-      attr_accessor :parser
-      attr_reader :json, :linter
+      attr_reader :json, :linter, :parser
 
       def initialize(json, linter)
         @linter = linter

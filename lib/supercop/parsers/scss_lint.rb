@@ -6,7 +6,7 @@ module Supercop
       def parse
         output = JSON.parse(json)
 
-        output.keys.inject(0) { |key, warnings| warnings + output[key].count }
+        output.keys.inject(0) { |warnings, key| warnings + output[key].count }
       end
     end
   end
