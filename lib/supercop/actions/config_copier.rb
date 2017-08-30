@@ -11,7 +11,7 @@ module Supercop
         @source = args.fetch(:source, 'supercop.yml')
       end
 
-      def perform
+      def call
         return "There is no destination #{destination}" if invalid_destination?
         return "#{destination_file} already exists" if File.exist?(destination)
 

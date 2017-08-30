@@ -8,7 +8,7 @@ module Supercop
         @config = Supercop.configuration
       end
 
-      def perform
+      def call
         warnings_count
       end
 

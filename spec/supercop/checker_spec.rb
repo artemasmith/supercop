@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Supercop::Checker do
-  describe 'parsing is ok' do
+  context 'when parsing is ok' do
     let(:cop_check_result) { ['ruocop', 0, 10, 'ok'] }
     let(:cop) { Supercop::Cop.new('rubocop') }
     let(:printer) { Supercop::TableFormatter.new }

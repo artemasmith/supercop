@@ -8,17 +8,18 @@ module Supercop
         @line = line
       end
 
-      def perform
+      def call
         return if file_include?
 
         insert_into_file
       end
 
+      def file_include?
+        File.foreach(filename).grep(sanitized).present?
+      end
+
       private
 
-      def file_include?
-        File.foreach(filename).grep(/#{sanitized}/).present?
-      end
 
       def insert_into_file
         File.open(filename, 'a') do |f|

@@ -3,16 +3,24 @@ module Supercop
     module Loaders
       class Base
         BUNDLE_REQUIRED = :bundle_required
-        attr_reader :gem_name, :config
+
+        attr_reader :gem_name, :config, :injector, :file
 
         def initialize(gem_name)
           @gem_name = gem_name
           @config = Supercop.configuration.public_send(gem_name)
+          @injector = Supercop::Actions::FileInjector
+          @file = Supercop.configuration.path('Gemfile')
         end
 
-        def perform
+        def installed?
           load_gem
+          true
         rescue LoadError
+          false
+        end
+
+        def call
           add_gem
 
           puts "'#{gem_name}' was added as dependency.\n"
@@ -22,17 +30,15 @@ module Supercop
         private
 
         def load_gem
-          require gem_name
+          require gem_name.to_s
         end
 
         def add_gem
-          file = Supercop.configuration.path('Gemfile')
-          if defined?(Rails)
-            inject_into_file(file, gem_config)
-          else
-            Supercop::Actions::FileInjector.new(filename: file,
-                                                line: gem_config).perform
-          end
+          # file = Supercop.configuration.path('Gemfile')
+          puts "Inserting into #{file} \n"
+          puts "gem config #{gem_config}\n"
+
+          injector.new(filename: file, line: gem_config).call
         end
 
         def gem_config
@@ -41,7 +47,6 @@ module Supercop
           result << ", path: '#{config[:path]}'" if option?(:path)
           result << ", git: '#{config[:git]}'" if option?(:git) && !option?(:path)
           result << "\n"
-          puts "\ngem_config #{result}\n"
           result.join(' ')
         end
 

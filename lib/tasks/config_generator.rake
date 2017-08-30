@@ -24,7 +24,7 @@ namespace :supercop do
 
     destination = Dir.pwd
 
-    puts Supercop::Actions::ConfigCopier.new(destination: destination).perform
+    puts Supercop::Actions::ConfigCopier.new(destination: destination).call
   end
 
   def loader
