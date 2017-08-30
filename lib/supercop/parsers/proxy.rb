@@ -12,7 +12,7 @@ module Supercop
       end
 
       def parse
-        parser.perform
+        parser.call
       end
 
       private

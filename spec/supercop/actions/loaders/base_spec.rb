@@ -10,26 +10,20 @@ describe Supercop::Actions::Loaders::Base do
     allow(Supercop.configuration).to receive(:path).and_return('')
   end
 
-  describe 'when no need to install' do
-    before { allow(service).to receive(:load_gem).and_return(true) }
+  context 'when install a gem' do
+    before { allow(service).to receive(:add_gem) }
 
-    it 'ok' do
-      expect(service).not_to receive(:add_gem)
+    it 'add a gem' do
+      expect(service).to receive(:add_gem)
 
-      service.perform
+      service.call
     end
   end
 
-  describe 'when needs to install' do
-    before do
-      allow(service).to receive(:load_gem).and_raise(LoadError)
-      allow(service).to receive(:add_gem)
-    end
+  describe 'interface check' do
+    subject { service }
 
-    it 'ok' do
-      expect(service).to receive(:add_gem)
-
-      service.perform
-    end
+    it { is_expected.to respond_to(:call) }
+    it { is_expected.to respond_to(:installed?) }
   end
 end
