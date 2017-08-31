@@ -46,11 +46,9 @@ module Supercop
 
         def install
           puts 'Updating your bundle, please wait'
-          `bundle install`
-        rescue => e
-          error = 'Something goes wrong while installing your bundle' \
-                  "Please try to install in manually\n #{e}"
-          puts error
+          Bundler.with_clean_env do
+            `bundle install`
+          end
         end
 
         def say_nothing_needed

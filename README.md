@@ -9,8 +9,7 @@ One gem for rule them all:)
 
 ### Versions
 
-I used ruby MRI version 2.3.1. I also tried version 2.2.3. In theory, it will work with 2.1 version of
-Ruby MRI too.
+I used ruby MRI version 2.3.1. I also tried version 2.2.3.
 
 ## Installation
 
