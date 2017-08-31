@@ -1,4 +1,5 @@
 # WIP: Supercop
+[![Build Status](https://travis-ci.org/artemasmith/supercop.svg?branch=master)](https://travis-ci.org/artemasmith/supercop)
 
 This gem allows you to combine multiple linters with their configs in one place and run all checks by one command with tabled-view summary report (see below).
 You should specify which linters you would like to use, for example rubocop, reek,
