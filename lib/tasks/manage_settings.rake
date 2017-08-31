@@ -15,6 +15,11 @@ namespace :supercop do
     loader.load_dependencies
   end
 
+  desc 'Clean up changes made by supercop: config, gems'
+  task :cleanup do
+    cleaner.call
+  end
+
   def generate_for_rails
     puts 'Please, use rails generator instead!'
   end
@@ -29,5 +34,9 @@ namespace :supercop do
 
   def loader
     Supercop::Actions::Loaders::Dependency.new
+  end
+
+  def cleaner
+    Supercop::Actions::Clean
   end
 end

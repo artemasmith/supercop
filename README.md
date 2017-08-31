@@ -33,7 +33,7 @@ Add supercop tasks to the Rakefile:
 
 ```ruby
   spec = Gem::Specification.find_by_name 'supercop'
-  load "#{spec.gem_dir}/lib/tasks/config_generator.rake"
+  load "#{spec.gem_dir}/lib/tasks/manage_settings.rake"
   load "#{spec.gem_dir}/lib/tasks/check.rake"
 ```
 
