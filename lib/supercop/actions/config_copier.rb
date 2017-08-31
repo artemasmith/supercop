@@ -13,7 +13,7 @@ module Supercop
 
       def call
         return "There is no destination #{destination}" if invalid_destination?
-        return "#{destination_file} already exists" if File.exist?(destination)
+        return "#{destination_file} already exists" if File.file?(destination_file)
 
         FileUtils.copy(source_file, destination_file, options)
 
