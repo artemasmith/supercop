@@ -34,7 +34,6 @@ module Supercop
         end
 
         def add_gem
-          # file = Supercop.configuration.path('Gemfile')
           puts "Inserting into #{file} \n"
           puts "gem config #{gem_config}\n"
 

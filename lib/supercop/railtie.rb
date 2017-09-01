@@ -3,7 +3,7 @@ module Supercop
   require 'rails/railtie'
   class Railtie < ::Rails::Railtie
     rake_tasks do
-      load 'tasks/config_generator.rake'
+      load 'tasks/manage_settings.rake'
       load 'tasks/check.rake'
     end
 

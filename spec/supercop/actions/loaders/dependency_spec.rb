@@ -8,6 +8,7 @@ describe Supercop::Actions::Loaders::Dependency do
     allow(Supercop.configuration).to receive(:cops_settings).and_return({})
     allow(Supercop.configuration.cops_settings).to receive(:keys).and_return(gems)
     allow(Supercop.configuration).to receive(gem_name).and_return({})
+    allow(service).to receive(:wrap_for_gemfile)
   end
 
   context 'when load smth' do

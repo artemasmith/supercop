@@ -33,15 +33,11 @@ module Supercop
         private
 
         def gems_to_add
-          res = gem_list.select { |gem_name| !loaded?(gem_name) }
-          puts "#{gem_list} ALL GEMS = #{res}\n"
-          res
+          gem_list.select { |gem_name| !loaded?(gem_name) }
         end
 
         def loaded?(gem_name)
-          res = loader.new(gem_name).installed? ? true : false
-          puts "LOADED #{gem_name} #{res}\n"
-          res
+          loader.new(gem_name).installed? ? true : false
         end
 
         def install
