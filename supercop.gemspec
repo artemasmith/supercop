@@ -9,10 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Artem Kuznetsov']
   spec.email         = ['artemasmith@gmailcom']
 
-  spec.summary       = %q{Utility for manage code estimation tools and get one
-                          report}
+  spec.summary       = %q{Utility for get easy and simple code quality report
+                          based on different linters, like rubocop or reek}
   spec.description   = %q{This gem allows you to use multiply lnters to check
-                          your code quality and get table-view report}
+                          your code quality and get nice table-view report}
   spec.homepage      = 'http://github.com/artemasmith/supercop'
   spec.license       = 'MIT'
 
@@ -23,9 +23,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 1.13'
-  spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'bundler', '>= 1.13'
+  spec.add_development_dependency 'rake', '>= 10.0'
+  spec.add_development_dependency 'rspec', '>= 3.0'
   spec.add_development_dependency 'rspec-its'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'fakefs'
