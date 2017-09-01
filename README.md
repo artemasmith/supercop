@@ -1,4 +1,4 @@
-# WIP: Supercop
+# Supercop
 [![Build Status](https://travis-ci.org/artemasmith/supercop.svg?branch=master)](https://travis-ci.org/artemasmith/supercop)
 
 This gem allows you to combine multiple linters with their configs in one place and run all checks by one command with tabled-view summary report (see below).
@@ -9,7 +9,7 @@ One gem for rule them all:)
 
 ### Versions
 
-I used ruby MRI version 2.3.1. I also tried version 2.2.3.
+It works for 2.2.3, 2.3.1, 2.3.3 versions of Ruby MRI.
 
 ## Installation
 
@@ -59,6 +59,14 @@ or you can do it manually by adding gems to your Gemfile (for other gems - to th
 `Note:` You should do it once.
 
 Now you can run checks.
+
+### Clean up
+
+If you want to restore all affected files and clean up supercop remnants, please run
+
+    $ rake supercop:cleanup
+
+This will delete config file and erase changes made by Supercop to your Gemfile and bundle.
 
 ### Running check
 
